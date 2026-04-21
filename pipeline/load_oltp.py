@@ -17,12 +17,25 @@ def obtener_engine():
     return create_engine(url, fast_executemany=True)
 
 
+def _truncar_tablas(engine) -> None:
+    with engine.begin() as conn:
+        conn.execute(text("DELETE FROM cp.fact_produccion_empresa"))
+        conn.execute(text("DELETE FROM cp.fact_consumo_agua"))
+        conn.execute(text("DELETE FROM cp.dim_empresa"))
+        conn.execute(text("DELETE FROM cp.dim_proceso"))
+        conn.execute(text("DELETE FROM cp.dim_fuente"))
+        conn.execute(text("DELETE FROM cp.dim_region"))
+        conn.execute(text("DELETE FROM cp.dim_tiempo"))
+
+
 def _cargar_tabla(engine, df: pd.DataFrame, tabla: str, chunk: int = 500) -> None:
     print(f"  Cargando {tabla} ({len(df)} filas)...")
     df.to_sql(tabla, engine, schema="cp", if_exists="append", index=False, chunksize=chunk)
 
 
 def cargar_dimensiones(engine, dims: dict) -> None:
+    print("Limpiando tablas anteriores...")
+    _truncar_tablas(engine)
     print("Cargando dimensiones...")
     _cargar_tabla(engine, dims["tiempo"],  "dim_tiempo")
     _cargar_tabla(engine, dims["region"],  "dim_region")
