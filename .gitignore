@@ -1,0 +1,41 @@
+# Secretos y credenciales
+.env
+*credentials*.json
+*-credentials.json
+*service-account*.json
+
+# Datos crudos y procesados
+data/raw/**
+data/interim/**
+data/processed/**
+
+# Python
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+**/.ipynb_checkpoints/
+
+# Entornos
+venv/
+.venv/
+
+# Node
+node_modules/
+
+# Herramientas y OS
+.DS_Store
+.claude/
+context/
+
+# Power BI
+*.pbix
+
+# Compilados Java/Scala
+target/
+
+# Logs
+*.log

@@ -1,0 +1,5 @@
+name: copperprint
+channels:
+  - defaults
+dependencies:
+  - python=3.11
