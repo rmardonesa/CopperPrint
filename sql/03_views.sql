@@ -73,6 +73,7 @@ WHERE p.es_anual = 1
 GROUP BY t.anio, e.nombre_empresa, e.grupo_controlador, e.tipo;
 GO
 
+
 CREATE VIEW cp.vw_proyeccion_demanda AS
 SELECT
     t.anio,
