@@ -22,6 +22,12 @@ const cards = [
         </article>
       ))}
     </div>
+
+    <div class="context__env">
+      <span class="context__env-item">Workspace: Linux Debian 12 · Conda environment · Docker Compose · Microsoft SQL Server</span>
+      <span class="context__env-sep">·</span>
+      <span class="context__env-item">LazyDocker + VSCode + DBeaver · Datasource desplegada en Google Cloud BigQuery</span>
+    </div>
   </div>
 </section>
 
@@ -77,4 +83,19 @@ const cards = [
       line-height: 1.75;
     }
   }
+
+  .context__env {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+    font-size: 0.82rem;
+    color: var(--muted);
+    padding: 0.85rem 1.25rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background-color: var(--surface);
+  }
+
+  .context__env-sep { color: var(--border); }
 </style>
