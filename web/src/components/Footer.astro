@@ -1,0 +1,68 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="footer__inner">
+    <span class="footer__brand">CopperPrint</span>
+    <nav class="footer__nav" aria-label="Footer">
+      <a
+        href="https://github.com/rmardonesa/CopperPrint"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        GitHub
+      </a>
+      <a
+        href="https://rmardonesa.dev"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Portafolio
+      </a>
+    </nav>
+    <span class="footer__copy">© {year} Rodrigo Mardones</span>
+  </div>
+</footer>
+
+<style lang="scss">
+  .footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem 1.5rem;
+
+    &__inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    &__brand {
+      font-weight: 700;
+      color: var(--copper);
+    }
+
+    &__nav {
+      display: flex;
+      gap: 1.5rem;
+
+      a {
+        color: var(--muted);
+        font-size: 0.9rem;
+
+        &:hover {
+          color: var(--text);
+          text-decoration: none;
+        }
+      }
+    }
+
+    &__copy {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+  }
+</style>

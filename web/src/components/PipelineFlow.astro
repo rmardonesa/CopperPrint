@@ -1,0 +1,203 @@
+---
+const steps = [
+  {
+    id:     'fuentes',
+    title:  'Fuentes',
+    detail: ['Comisión chilena', 'del cobre (COCHILCO)'],
+    color:  'muted',
+    logos:  [{ src: '/logos/cochilco.png', alt: 'Cochilco' }],
+  },
+  {
+    id:     'extract',
+    title:  'Python ETL',
+    detail: ['pandas', 'SQLAlchemy', 'google-cloud-bigquery'],
+    color:  'copper',
+    logos:  [{ src: '/logos/python.svg', alt: 'Python' }],
+  },
+  {
+    id:     'docker',
+    title:  'Docker',
+    detail: ['Docker Compose', 'lazydocker', 'volumen mssql-data'],
+    color:  'muted',
+    logos:  [{ src: '/logos/docker.svg', alt: 'Docker' }],
+  },
+  {
+    id:     'oltp',
+    title:  'SQL Server',
+    detail: ['T-SQL', 'esquema OLTP', 'modelo estrella', '7 tablas'],
+    color:  'water',
+    logos:  [{ src: '/logos/sql-server.svg', alt: 'SQL Server' }],
+  },
+  {
+    id:     'dwh',
+    title:  'BigQuery',
+    detail: ['Data Warehouse', '6 vistas analíticas', 'southamerica-west1'],
+    color:  'water',
+    logos:  [{ src: '/logos/bigquery.svg', alt: 'BigQuery' }],
+  },
+  {
+    id:     'viz',
+    title:  'Power BI',
+    detail: ['DirectQuery', 'DAX', 'pbix Service'],
+    color:  'purple',
+    logos:  [{ src: '/logos/power-bi.svg', alt: 'Power BI' }],
+  },
+];
+---
+
+<section class="pipeline">
+  <div class="pipeline__inner">
+    <h2 class="pipeline__heading">Arquitectura del pipeline</h2>
+    <p class="pipeline__sub"></p>
+
+    <ol class="pipeline__flow" role="list">
+      {steps.map((step, i) => (
+        <>
+          <li class={`pipeline__step pipeline__step--${step.color}`}>
+            <div class="pipeline__logos">
+              {step.logos.map(({ src, alt }) => (
+                <img src={src} alt={alt} class="pipeline__logo" loading="lazy" />
+              ))}
+            </div>
+            <span class="pipeline__step-num">{String(i + 1).padStart(2, '0')}</span>
+            <strong class="pipeline__step-title">{step.title}</strong>
+            <div class="pipeline__step-detail">
+              {step.detail.map(line => <span>{line}</span>)}
+            </div>
+          </li>
+          {i < steps.length - 1 && (
+            <li class="pipeline__arrow" aria-hidden="true">→</li>
+          )}
+        </>
+      ))}
+    </ol>
+
+    <div class="pipeline__env">
+      <span class="pipeline__env-item">Workspace: Linux Debian 12 · Conda environment · Docker Compose · Microsoft SQL Server</span>
+      <span class="pipeline__env-sep">·</span>
+      <span class="pipeline__env-item">LazyDocker + VSCode + DBeaver · Datasource desplegada en Google Cloud BigQuery</span>
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  .pipeline {
+    padding: 5rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+
+    &__inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+
+    &__heading {
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    &__sub {
+      margin-top: -1.75rem;
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    &__flow {
+      display: flex;
+      align-items: stretch;
+      flex-wrap: wrap;
+      gap: 0;
+      list-style: none;
+    }
+
+    &__step {
+      flex: 1;
+      min-width: 140px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 1.25rem 1rem;
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      transition: border-color 0.2s;
+      text-align: center;
+
+      &--copper { border-top: 3px solid var(--copper); }
+      &--water  { border-top: 3px solid var(--water);  }
+      &--purple { border-top: 3px solid #a78bfa;       }
+      &--muted  { border-top: 3px solid var(--muted);  }
+    }
+
+    &__logos {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    &__logo {
+      height: 48px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    &__step-num {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+    }
+
+    &__step-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    &__step-detail {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.15rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+      line-height: 1.5;
+
+      span { white-space: nowrap; }
+    }
+
+    &__arrow {
+      display: flex;
+      align-items: center;
+      padding: 0 0.5rem;
+      color: var(--border);
+      font-size: 1.2rem;
+      list-style: none;
+
+      @media (max-width: 640px) {
+        display: none;
+      }
+    }
+
+    &__env {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: center;
+      font-size: 0.82rem;
+      color: var(--muted);
+      padding: 0.85rem 1.25rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background-color: var(--surface);
+    }
+
+    &__env-sep { color: var(--border); }
+  }
+</style>

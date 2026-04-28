@@ -1,0 +1,79 @@
+---
+const POWERBI_EMBED_URL = 'https://app.powerbi.com/view?r=eyJrIjoiOWRiMWZlY2YtZjU4NS00NjcxLTlkNzQtYTExYjc4MzM5NWQ2IiwidCI6IjM4YTFlMGExLWI2YjEtNDJlOS1iM2E5LTU5NzYyNjY3MGIxNyIsImMiOjR9';
+---
+
+<section id="dashboard" class="dashboard">
+  <div class="dashboard__header">
+    <span class="dashboard__label">Dashboard interactivo</span>
+    <span class="dashboard__meta">DirectQuery · BigQuery · 3 páginas</span>
+  </div>
+
+  {POWERBI_EMBED_URL ? (
+    <div class="dashboard__frame-wrapper">
+      <iframe
+        title="CopperPrint Dashboard"
+        src={POWERBI_EMBED_URL}
+        allowFullScreen
+        class="dashboard__frame"
+      />
+    </div>
+  ) : (
+    <div class="dashboard__placeholder">
+      <span>Power BI embed URL pendiente</span>
+    </div>
+  )}
+</section>
+
+<style lang="scss">
+  .dashboard {
+    border-bottom: 1px solid var(--border);
+
+    &__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.9rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      background-color: var(--surface);
+    }
+
+    &__label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    &__meta {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    &__frame-wrapper {
+      position: relative;
+      width: 100%;
+      padding-top: 62%;
+    }
+
+    &__frame {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      background-color: var(--surface);
+    }
+
+    &__placeholder {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+      background-color: var(--surface);
+    }
+  }
+</style>
